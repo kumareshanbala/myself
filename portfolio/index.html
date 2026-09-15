@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumareshan Balaraja | Senior Full Stack Developer & Payments Engineer</title>
+  <meta name="description" content="Portfolio of Kumareshan Balaraja, Senior Full Stack Developer specializing in Golang, PHP, eKYC, Visa prepaid cards, and payment gateway integrations.">
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              DEFAULT: '#0B0F19',
+              card: 'rgba(22, 31, 48, 0.45)',
+              border: 'rgba(255, 255, 255, 0.06)',
+              hover: 'rgba(255, 255, 255, 0.1)',
+              text: '#F3F4F6',
+              muted: '#94A3B8'
+            },
+            accent: {
+              cyan: '#06B6D4',
+              violet: '#8B5CF6',
+              emerald: '#10B981'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'glow-slow': 'glow 8s infinite alternate',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Core Styles & Animations -->
+  <style type="text/css">
+    /* Global Styling */
+    body {
+      background-color: #0B0F19;
+      color: #F3F4F6;
+      overflow-x: hidden;
+    }
+
+    /* Selection Highlight */
+    ::selection {
+      background-color: rgba(6, 182, 212, 0.3);
+      color: #FFFFFF;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374151;
+    }
+
+    /* Glassmorphism Styling */
+    .glass {
+      background: rgba(22, 31, 48, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .glass-nav {
+      background: rgba(11, 15, 25, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Background Blobs Keyframes */
+    @keyframes blob-drift {
+      0% {
+        transform: translate(0px, 0px) scale(1);
+      }
+      33% {
+        transform: translate(40px, -60px) scale(1.15);
+      }
+      66% {
+        transform: translate(-30px, 30px) scale(0.9);
+      }
+      100% {
+        transform: translate(0px, 0px) scale(1);
+      }
+    }
+    .animate-blob-1 {
+      animation: blob-drift 20s infinite ease-in-out;
+    }
+    .animate-blob-2 {
+      animation: blob-drift 25s infinite ease-in-out 3s;
+    }
+
+    /* Pulsing Profile Border */
+    @keyframes border-pulse {
+      0% {
+        border-color: rgba(6, 182, 212, 0.4);
+        box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+      }
+      50% {
+        border-color: rgba(139, 92, 246, 0.6);
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      }
+      100% {
+        border-color: rgba(6, 182, 212, 0.4);
+        box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+      }
+    }
+    .profile-glow {
+      animation: border-pulse 6s infinite ease-in-out;
+    }
+
+    /* Scroll Animation Reveal Classes */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .scroll-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered Delay Helpers */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    /* Custom Gradient Text */
+    .gradient-text {
+      background: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 50%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Magnetic Buttons */
+    .magnetic-btn {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    }
+    .magnetic-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    /* Hover scale for cards */
+    .card-hover-effect {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover-effect:hover {
+      transform: translateY(-6px);
+      border-color: rgba(6, 182, 212, 0.3);
+      box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-dark-text relative">
+
+  <!-- ================= BACKGROUND ORNAMENTAL BLOBS ================= -->
+  <div class="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
+    <div class="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] md:w-[50vw] md:h-[50vw] rounded-full bg-accent-cyan/10 blur-[130px] animate-blob-1"></div>
+    <div class="absolute -bottom-[20%] -right-[10%] w-[70vw] h-[70vw] md:w-[50vw] md:h-[50vw] rounded-full bg-accent-violet/10 blur-[130px] animate-blob-2"></div>
+  </div>
+
+  <!-- ================= FIXED HEADER / NAVIGATION ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#hero" class="text-xl font-bold tracking-wider flex items-center gap-2 group">
+        <span class="w-2.5 h-2.5 rounded-full bg-accent-cyan group-hover:bg-accent-violet transition-colors duration-300"></span>
+        <span class="font-semibold text-white tracking-widest">KUMARESHAN</span>
+        <span class="text-accent-cyan font-extrabold">.B</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm font-medium text-dark-muted hover:text-white transition-colors duration-200">About</a>
+        <a href="#experience" class="text-sm font-medium text-dark-muted hover:text-white transition-colors duration-200">Experience</a>
+        <a href="#skills" class="text-sm font-medium text-dark-muted hover:text-white transition-colors duration-200">Skills</a>
+        <a href="#contact" class="text-sm font-medium text-dark-muted hover:text-white transition-colors duration-200">Contact</a>
+        <a href="https://www.linkedin.com/in/kumareshan005" target="_blank" rel="noopener noreferrer" 
+           class="px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg glass border border-accent-cyan/20 text-accent-cyan hover:bg-accent-cyan/10 transition-all duration-300 flex items-center gap-2">
+          <!-- Inline LinkedIn SVG -->
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="md:hidden text-white hover:text-accent-cyan transition-colors" id="mobile-menu-btn" aria-label="Toggle menu">
+        <!-- Default Hamburger Icon -->
+        <svg class="w-6 h-6 block" id="menu-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <!-- Close (X) Icon (Hidden initially) -->
+        <svg class="w-6 h-6 hidden" id="close-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="hidden md:hidden glass border-t border-dark-border absolute top-20 left-0 w-full px-6 py-6 transition-all duration-300 flex flex-col gap-5 shadow-2xl" id="mobile-menu">
+      <a href="#about" class="mobile-link text-lg font-medium text-dark-muted hover:text-white">About</a>
+      <a href="#experience" class="mobile-link text-lg font-medium text-dark-muted hover:text-white">Experience</a>
+      <a href="#skills" class="mobile-link text-lg font-medium text-dark-muted hover:text-white">Skills</a>
+      <a href="#contact" class="mobile-link text-lg font-medium text-dark-muted hover:text-white">Contact</a>
+      <a href="https://www.linkedin.com/in/kumareshan005" target="_blank" rel="noopener noreferrer" 
+         class="w-full text-center py-3 font-semibold rounded-lg bg-gradient-to-r from-accent-cyan to-accent-violet text-white flex items-center justify-center gap-2">
+        <!-- Inline LinkedIn SVG -->
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="hero" class="min-h-screen pt-28 pb-16 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Content (Left) -->
+      <div class="lg:col-span-7 flex flex-col justify-center space-y-6 text-center lg:text-left order-2 lg:order-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-accent-cyan/10 self-center lg:self-start w-fit text-accent-cyan text-xs font-semibold tracking-wider uppercase mb-2">
+          <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span> Open for Opportunities
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+          Hi, I am <br>
+          <span class="gradient-text font-black">Kumareshan Balaraja</span>
+        </h1>
+        
+        <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-dark-muted">
+          Senior Associate Full Stack Developer &amp; Payment Gateway Specialist
+        </h2>
+        
+        <p class="text-base sm:text-lg text-dark-muted max-w-2xl leading-relaxed">
+          I design and implement scalable, high-performance backends in Golang and PHP, and build secure fintech platforms. My passion lies in payment gateway integrations and architecting robust systems like eKYC and prepaid card management solutions.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+          <a href="https://www.linkedin.com/in/kumareshan005" target="_blank" rel="noopener noreferrer" 
+             class="magnetic-btn px-8 py-4 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-violet hover:from-accent-cyan hover:to-accent-violet text-white font-semibold text-center flex items-center justify-center gap-3 shadow-lg shadow-accent-cyan/15 hover:shadow-accent-violet/25">
+            <!-- Inline LinkedIn SVG -->
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            Connect on LinkedIn
+          </a>
+          <a href="#contact" 
+             class="magnetic-btn px-8 py-4 rounded-xl glass border border-dark-border hover:bg-dark-hover text-white font-semibold text-center flex items-center justify-center gap-2">
+            <!-- Inline Mail SVG -->
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Image (Right) -->
+      <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+        <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">
+          
+          <!-- Decorative Glowing Rings -->
+          <div class="absolute inset-0 rounded-full border border-dashed border-accent-cyan/35 animate-[spin_40s_linear_infinite]"></div>
+          <div class="absolute inset-3 rounded-full border border-accent-violet/25 animate-[spin_25s_linear_infinite_reverse]"></div>
+          
+          <!-- Image Container -->
+          <div class="absolute inset-6 rounded-full overflow-hidden border-2 profile-glow bg-dark-card flex items-center justify-center">
+            <!-- Tries to load local file profile.jpg. Fallback is styled user icon if image fails or is missing. -->
+            <img src="profile.jpg" alt="Kumareshan Balaraja" class="w-full h-full object-cover" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            
+            <!-- Beautiful visual backup element in case profile.jpg doesn't exist yet -->
+            <div class="hidden w-full h-full bg-gradient-to-tr from-[#161F30] to-[#0B0F19] flex-col items-center justify-center text-center p-6 text-dark-muted">
+              <!-- Inline User SVG -->
+              <svg class="w-16 h-16 text-accent-cyan/80 mb-3 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="text-sm font-semibold text-white">profile.jpg</span>
+              <span class="text-xs text-dark-muted mt-1 px-4">Place your photo as profile.jpg in the code folder to load it here automatically.</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ME SECTION ================= -->
+  <section id="about" class="py-24 bg-dark/25 relative border-t border-dark-border">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center md:text-left mb-16 scroll-reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-accent-cyan">01 / About Me</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-2 text-white">My Strengths &amp; Background</h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-accent-cyan to-accent-violet mt-4 mx-auto md:mx-0 rounded"></div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- About Narrative (Left) -->
+        <div class="lg:col-span-7 space-y-6 text-dark-muted text-lg leading-relaxed scroll-reveal delay-100">
+          <p>
+            I am a senior application developer specializing in fintech and secure web operations. I hold a 
+            <strong class="text-white">Bachelor of Information Technology (Hons)</strong> from Nilai University (GPA 3.617), where I was honored with the <strong class="text-accent-cyan">Best Student Award in 2023</strong>.
+          </p>
+          <p>
+            Over the course of my career, primarily at <strong class="text-white">Kiplepay Sdn Bhd</strong>, I have focused heavily on integrating secure, robust payment gateways (including EMV 3-D Secure V2 and Razer Direct APIs) and managing critical card systems.
+          </p>
+          <p>
+            Whether it's leading the backend architecture of high-performance eKYC engines in Golang, configuring complex SQL queries for Fraud teams, or writing custom eCommerce modules for Shopify platforms, I maintain a strict focus on system reliability, responsiveness, and performance optimization.
+          </p>
+          
+          <!-- Key Focus Areas tags -->
+          <div class="pt-4">
+            <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Key Industries of Expertise</h4>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan">Fintech &amp; Payments</span>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-accent-violet/10 border border-accent-violet/20 text-accent-violet">eKYC &amp; Identity</span>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-accent-emerald/10 border border-accent-emerald/20 text-accent-emerald">E-Commerce &amp; Support Portals</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Cards (Right) -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4 scroll-reveal delay-200">
+          
+          <!-- Metric 1 -->
+          <div class="glass p-6 rounded-2xl flex flex-col justify-center items-center text-center card-hover-effect">
+            <span class="text-4xl md:text-5xl font-black text-white tracking-tight flex items-center">
+              <span class="text-accent-cyan">6</span><span>+</span>
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-dark-muted mt-2">Years Experience</span>
+          </div>
+
+          <!-- Metric 2 -->
+          <div class="glass p-6 rounded-2xl flex flex-col justify-center items-center text-center card-hover-effect">
+            <span class="text-4xl md:text-5xl font-black text-white tracking-tight flex items-center">
+              <span class="text-accent-violet">20</span><span>+</span>
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-dark-muted mt-2">Projects Delivered</span>
+          </div>
+
+          <!-- Metric 3 -->
+          <div class="glass p-6 rounded-2xl flex flex-col justify-center items-center text-center card-hover-effect">
+            <span class="text-4xl md:text-5xl font-black text-white tracking-tight flex items-center">
+              <span class="text-accent-emerald">5</span><span>+</span>
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-dark-muted mt-2">Gateways Integrated</span>
+          </div>
+
+          <!-- Metric 4 -->
+          <div class="glass p-6 rounded-2xl flex flex-col justify-center items-center text-center card-hover-effect">
+            <span class="text-4xl md:text-5xl font-black text-white tracking-tight flex items-center">
+              <span class="text-accent-cyan">99.9</span><span>%</span>
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-dark-muted mt-2">eKYC &amp; System Uptime</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE TIMELINE ================= -->
+  <section id="experience" class="py-24 relative border-t border-dark-border">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-20 scroll-reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-accent-cyan">02 / Experience</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-2 text-white">Professional Journey</h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-accent-cyan to-accent-violet mt-4 mx-auto rounded"></div>
+      </div>
+
+      <!-- Timeline Container -->
+      <div class="relative border-l-2 border-dark-border ml-4 md:ml-32 pl-8 md:pl-12 space-y-12">
+        
+        <!-- Axis glow effect at the top of the line -->
+        <div class="absolute -top-1 left-[-3px] w-1 h-8 bg-gradient-to-b from-accent-cyan to-transparent"></div>
+
+        <!-- Role 1 -->
+        <div class="relative scroll-reveal">
+          <!-- Timeline Node -->
+          <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 rounded-full border-4 border-dark bg-accent-cyan shadow-[0_0_12px_rgba(6,182,212,0.6)] z-10"></div>
+          
+          <!-- Date label for Desktop (hidden on mobile, floats left of axis) -->
+          <div class="hidden md:block absolute left-[-168px] top-1 text-right w-36">
+            <span class="text-xs font-bold tracking-wider text-accent-cyan uppercase">May 2025 – Present</span>
+            <p class="text-[10px] text-dark-muted uppercase font-semibold">Kiplepay Sdn Bhd</p>
+          </div>
+
+          <!-- Timeline Content Card -->
+          <div class="glass p-6 md:p-8 rounded-2xl card-hover-effect">
+            <!-- Mobile specific date -->
+            <span class="inline-block md:hidden text-xs font-semibold text-accent-cyan mb-2">May 2025 – Present • Kiplepay Sdn Bhd</span>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+              <h3 class="text-xl font-bold text-white">Senior Associate, Full Stack Developer</h3>
+              <span class="hidden md:inline-block px-3 py-1 text-xs font-semibold rounded-md bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Full-Time</span>
+            </div>
+            <p class="text-sm font-semibold text-dark-muted mb-4 flex items-center gap-1.5">
+              <!-- Inline Map Pin SVG -->
+              <svg class="w-3.5 h-3.5 text-accent-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Petaling Jaya, Malaysia
+            </p>
+            <ul class="space-y-3.5 text-sm md:text-base text-dark-muted">
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan mt-2 shrink-0"></span>
+                <span>Led the development and maintenance of high-performance <strong class="text-white">eKYC</strong> and <strong class="text-white">Visa Prepaid Card</strong> management systems in Golang, guaranteeing high scalability, performance, and availability.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan mt-2 shrink-0"></span>
+                <span>Collaborated with payment networks to integrate <strong class="text-white">FPX, Google Pay</strong>, and Razer eWallet APIs; supported complex Level 2 client issues for multiple white-label companies.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan mt-2 shrink-0"></span>
+                <span>Developed custom full-stack features using PHP (Laravel), Ionic, and Angular while streamlining testing and deployment with automated Git/Jenkins pipelines.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="relative scroll-reveal delay-100">
+          <!-- Timeline Node -->
+          <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 rounded-full border-4 border-dark bg-accent-violet shadow-[0_0_12px_rgba(139,92,246,0.5)] z-10"></div>
+          
+          <!-- Date label for Desktop -->
+          <div class="hidden md:block absolute left-[-168px] top-1 text-right w-36">
+            <span class="text-xs font-bold tracking-wider text-accent-violet uppercase">Jul 2024 – May 2025</span>
+            <p class="text-[10px] text-dark-muted uppercase font-semibold">Kiplepay Sdn Bhd</p>
+          </div>
+
+          <!-- Timeline Content Card -->
+          <div class="glass p-6 md:p-8 rounded-2xl card-hover-effect">
+            <span class="inline-block md:hidden text-xs font-semibold text-accent-violet mb-2">Jul 2024 – May 2025 • Kiplepay Sdn Bhd</span>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+              <h3 class="text-xl font-bold text-white">Associate Software Developer</h3>
+              <span class="hidden md:inline-block px-3 py-1 text-xs font-semibold rounded-md bg-accent-violet/10 text-accent-violet border border-accent-violet/20">Promotion</span>
+            </div>
+            <p class="text-sm font-semibold text-dark-muted mb-4 flex items-center gap-1.5">
+              <!-- Inline Map Pin SVG -->
+              <svg class="w-3.5 h-3.5 text-accent-violet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Petaling Jaya, Malaysia
+            </p>
+            <ul class="space-y-3.5 text-sm md:text-base text-dark-muted">
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-violet mt-2 shrink-0"></span>
+                <span>Designed and engineered secure backend services and API solutions utilizing Golang, Python, PHP (Laravel/CakePHP), and jQuery frontends.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-violet mt-2 shrink-0"></span>
+                <span>Integrated credit card transaction protocols including <strong class="text-white">EMV 3-D Secure V2</strong> and Razer direct server API integrations.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-violet mt-2 shrink-0"></span>
+                <span>Optimized database architecture and refined SQL structures inside MySQL and MariaDB to eliminate query bottlenecks.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="relative scroll-reveal delay-200">
+          <!-- Timeline Node -->
+          <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 rounded-full border-4 border-dark bg-accent-emerald shadow-[0_0_12px_rgba(16,185,129,0.5)] z-10"></div>
+          
+          <!-- Date label for Desktop -->
+          <div class="hidden md:block absolute left-[-168px] top-1 text-right w-36">
+            <span class="text-xs font-bold tracking-wider text-accent-emerald uppercase">Apr 2023 – Jul 2024</span>
+            <p class="text-[10px] text-dark-muted uppercase font-semibold">Kiplepay Sdn Bhd</p>
+          </div>
+
+          <!-- Timeline Content Card -->
+          <div class="glass p-6 md:p-8 rounded-2xl card-hover-effect">
+            <span class="inline-block md:hidden text-xs font-semibold text-accent-emerald mb-2">Apr 2023 – Jul 2024 • Kiplepay Sdn Bhd</span>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+              <h3 class="text-xl font-bold text-white">Associate Application Support L2 (PHP)</h3>
+              <span class="hidden md:inline-block px-3 py-1 text-xs font-semibold rounded-md bg-accent-emerald/10 text-accent-emerald border border-accent-emerald/20">Support</span>
+            </div>
+            <p class="text-sm font-semibold text-dark-muted mb-4 flex items-center gap-1.5">
+              <!-- Inline Map Pin SVG -->
+              <svg class="w-3.5 h-3.5 text-accent-emerald" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Petaling Jaya, Malaysia
+            </p>
+            <ul class="space-y-3.5 text-sm md:text-base text-dark-muted">
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald mt-2 shrink-0"></span>
+                <span>Designed and developed an internal support portal and dashboard using PHP, enabling Fraud detection, Sales Operations, and Support teams to securely monitor payment flows.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald mt-2 shrink-0"></span>
+                <span>Supported merchants on API integrations and configured custom store plugins for WooCommerce, PrestaShop, OpenCart, and Magento.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald mt-2 shrink-0"></span>
+                <span>Collaborated with engineering to migrate core payment routines and co-developed wallet services for the Selangor Gov (Selangkah Wallet).</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="relative scroll-reveal delay-300">
+          <!-- Timeline Node -->
+          <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 rounded-full border-4 border-dark bg-dark-muted shadow-[0_0_12px_rgba(148,163,184,0.4)] z-10"></div>
+          
+          <!-- Date label for Desktop -->
+          <div class="hidden md:block absolute left-[-168px] top-1 text-right w-36">
+            <span class="text-xs font-bold tracking-wider text-dark-muted uppercase">Jun 2020 – Nov 2022</span>
+            <p class="text-[10px] text-dark-muted uppercase font-semibold">Kollect Systems</p>
+          </div>
+
+          <!-- Timeline Content Card -->
+          <div class="glass p-6 md:p-8 rounded-2xl card-hover-effect">
+            <span class="inline-block md:hidden text-xs font-semibold text-dark-muted mb-2">Jun 2020 – Nov 2022 • Kollect Systems</span>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+              <h3 class="text-xl font-bold text-white">Full Stack Developer Intern</h3>
+              <span class="hidden md:inline-block px-3 py-1 text-xs font-semibold rounded-md bg-dark-hover text-dark-muted border border-dark-border">Internship</span>
+            </div>
+            <p class="text-sm font-semibold text-dark-muted mb-4 flex items-center gap-1.5">
+              <!-- Inline Map Pin SVG -->
+              <svg class="w-3.5 h-3.5 text-dark-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Petaling Jaya, Malaysia
+            </p>
+            <ul class="space-y-3.5 text-sm md:text-base text-dark-muted">
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-dark-muted mt-2 shrink-0"></span>
+                <span>Contributed to the development of the Kollect Valley system utilizing <strong class="text-white">Svelte</strong> frontend frameworks, Java, Jooby, and PostgreSQL databases.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-dark-muted mt-2 shrink-0"></span>
+                <span>Optimized codebase integrations using GitLab CI/CD pipelines, issue tracking systems, and team merge request pipelines.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-dark-muted mt-2 shrink-0"></span>
+                <span>Acquired deep knowledge of software design principles, relational database designs, and clean, modular coding standards.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SKILLS GRID ================= -->
+  <section id="skills" class="py-24 bg-dark/25 relative border-t border-dark-border">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16 scroll-reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-accent-cyan">03 / Skills</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-2 text-white">Toolbox &amp; Capabilities</h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-accent-cyan to-accent-violet mt-4 mx-auto rounded"></div>
+      </div>
+
+      <!-- Skills Categories Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Category 1: Core Tech -->
+        <div class="glass p-8 rounded-2xl card-hover-effect scroll-reveal flex flex-col justify-between">
+          <div>
+            <!-- Inline Code Icon -->
+            <div class="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center border border-accent-cyan/20 text-accent-cyan mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Core Tech &amp; Programming</h3>
+            <p class="text-sm text-dark-muted mb-6 leading-relaxed">Languages, structures, and libraries used to engineer front and backend systems.</p>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Golang</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">PHP</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">JavaScript</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Python</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">C++</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Java</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">SQL</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Laravel</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">CakePHP</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Svelte</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Angular</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">Ionic</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">MySQL</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-cyan/35 transition-colors">PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Category 2: Tools & Infrastructure -->
+        <div class="glass p-8 rounded-2xl card-hover-effect scroll-reveal delay-100 flex flex-col justify-between">
+          <div>
+            <!-- Inline CPU Icon -->
+            <div class="w-12 h-12 rounded-xl bg-accent-violet/10 flex items-center justify-center border border-accent-violet/20 text-accent-violet mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><path d="M9 1v3"></path><path d="M15 1v3"></path><path d="M9 20v3"></path><path d="M15 20v3"></path><path d="M20 9h3"></path><path d="M20 15h3"></path><path d="M1 9h3"></path><path d="M1 15h3"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Tools &amp; Infrastructure</h3>
+            <p class="text-sm text-dark-muted mb-6 leading-relaxed">CI/CD automation, cloud providers, monitoring packages, and gateways.</p>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Git / GitHub</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">GitLab</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Jenkins CI/CD</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Ubuntu Linux</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Firebase</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">JIRA</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">EMV 3-D Secure</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Razer API</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Google Pay API</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">WooCommerce</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-violet/35 transition-colors">Shopify Modules</span>
+          </div>
+        </div>
+
+        <!-- Category 3: Methodologies & soft -->
+        <div class="glass p-8 rounded-2xl card-hover-effect scroll-reveal delay-200 flex flex-col justify-between">
+          <div>
+            <!-- Inline Users Icon -->
+            <div class="w-12 h-12 rounded-xl bg-accent-emerald/10 flex items-center justify-center border border-accent-emerald/20 text-accent-emerald mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Methodologies &amp; Soft Skills</h3>
+            <p class="text-sm text-dark-muted mb-6 leading-relaxed">Management practices and operational values I emphasize in team projects.</p>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Agile methodology</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Scrum Cycles</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">API Integration</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Database Optimization</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">L2 Tech Support</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Cross Collaboration</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Requirements Gathering</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Problem Solving</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Performance Tuning</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-hover border border-dark-border text-white hover:border-accent-emerald/35 transition-colors">Attention to Detail</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section id="contact" class="py-24 relative border-t border-dark-border">
+    <div class="max-w-4xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16 scroll-reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-accent-cyan">04 / Contact</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-2 text-white">Let's Work Together</h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-accent-cyan to-accent-violet mt-4 mx-auto rounded"></div>
+      </div>
+
+      <!-- Centered Contact Card -->
+      <div class="glass p-8 md:p-12 rounded-3xl text-center space-y-8 scroll-reveal">
+        <div class="max-w-2xl mx-auto space-y-4">
+          <h3 class="text-2xl md:text-3xl font-bold text-white">Get in Touch</h3>
+          <p class="text-dark-muted text-base leading-relaxed">
+            Have an exciting project idea, looking for a senior systems developer, or just want to connect? Reach out directly via WhatsApp, Email, or LinkedIn.
+          </p>
+        </div>
+
+        <!-- Contact Channels Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 max-w-4xl mx-auto">
+          
+          <!-- WhatsApp Channel -->
+          <a href="https://wa.me/601131729875" target="_blank" rel="noopener noreferrer"
+             class="glass p-6 rounded-2xl flex flex-col items-center justify-center text-center card-hover-effect group border-accent-emerald/20 hover:border-accent-emerald/40">
+            <div class="w-12 h-12 rounded-xl bg-accent-emerald/10 flex items-center justify-center text-accent-emerald mb-4 group-hover:bg-accent-emerald/25 transition-colors duration-300">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            <span class="text-sm font-bold text-white uppercase tracking-wider">WhatsApp</span>
+            <span class="text-xs text-dark-muted mt-1">+60 11-3172 9875</span>
+          </a>
+
+          <!-- GitHub Channel -->
+          <a href="https://github.com/Kumareshan005" target="_blank" rel="noopener noreferrer"
+             class="glass p-6 rounded-2xl flex flex-col items-center justify-center text-center card-hover-effect group border-white/10 hover:border-accent-cyan/40">
+            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white mb-4 group-hover:bg-white/15 transition-colors duration-300">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+            </div>
+            <span class="text-sm font-bold text-white uppercase tracking-wider">GitHub</span>
+            <span class="text-xs text-dark-muted mt-1">Kumareshan005</span>
+          </a>
+
+          <!-- Email Channel -->
+          <a href="mailto:b.kumareshan@gmail.com"
+             class="glass p-6 rounded-2xl flex flex-col items-center justify-center text-center card-hover-effect group border-accent-cyan/20 hover:border-accent-cyan/40">
+            <div class="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center text-accent-cyan mb-4 group-hover:bg-accent-cyan/25 transition-colors duration-300">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <span class="text-sm font-bold text-white uppercase tracking-wider">Email Me</span>
+            <span class="text-xs text-dark-muted mt-1">b.kumareshan@gmail.com</span>
+          </a>
+
+          <!-- LinkedIn Channel -->
+          <a href="https://www.linkedin.com/in/kumareshan005" target="_blank" rel="noopener noreferrer"
+             class="glass p-6 rounded-2xl flex flex-col items-center justify-center text-center card-hover-effect group border-accent-violet/20 hover:border-accent-violet/40">
+            <div class="w-12 h-12 rounded-xl bg-accent-violet/10 flex items-center justify-center text-accent-violet mb-4 group-hover:bg-accent-violet/25 transition-colors duration-300">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </div>
+            <span class="text-sm font-bold text-white uppercase tracking-wider">LinkedIn</span>
+            <span class="text-xs text-dark-muted mt-1">kumareshan005</span>
+          </a>
+
+        </div>
+
+        <!-- Location Footer -->
+        <p class="text-sm text-dark-muted flex items-center justify-center gap-2 pt-4">
+          <svg class="w-4 h-4 text-accent-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Based in Petaling Jaya, Malaysia
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-dark border-t border-dark-border py-12 relative">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Logo/Brand Info -->
+      <div class="flex flex-col items-center md:items-start gap-2">
+        <a href="#hero" class="text-lg font-bold tracking-wider flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-accent-cyan"></span>
+          <span class="font-semibold text-white">KUMARESHAN</span>
+          <span class="text-accent-cyan font-black">.B</span>
+        </a>
+        <p class="text-xs text-dark-muted">© 2026 Kumareshan Balaraja. All rights reserved.</p>
+      </div>
+
+      <!-- Links & Navigation -->
+      <div class="flex items-center gap-6">
+        <!-- Inline LinkedIn SVG -->
+        <a href="https://www.linkedin.com/in/kumareshan005" target="_blank" rel="noopener noreferrer" 
+           class="text-dark-muted hover:text-white transition-colors" aria-label="LinkedIn">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <!-- Inline GitHub SVG -->
+        <a href="https://github.com/Kumareshan005" target="_blank" rel="noopener noreferrer" 
+           class="text-dark-muted hover:text-white transition-colors" aria-label="GitHub">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        </a>
+        <!-- Inline WhatsApp SVG -->
+        <a href="https://wa.me/601131729875" target="_blank" rel="noopener noreferrer" 
+           class="text-dark-muted hover:text-white transition-colors" aria-label="WhatsApp">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <!-- Inline Mail SVG -->
+        <a href="mailto:b.kumareshan@gmail.com" class="text-dark-muted hover:text-white transition-colors" aria-label="Email">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Scroll to Top Button -->
+      <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" 
+              class="magnetic-btn w-10 h-10 rounded-xl bg-dark-hover hover:bg-dark border border-dark-border hover:border-accent-cyan/50 flex items-center justify-center text-white hover:text-accent-cyan transition-all"
+              aria-label="Back to top">
+        <!-- Inline Arrow Up SVG -->
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+      </button>
+
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // Mobile Menu Navigation Logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconSvg = document.getElementById('menu-icon-svg');
+    const closeIconSvg = document.getElementById('close-icon-svg');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (isHidden) {
+        menuIconSvg.classList.remove('hidden');
+        menuIconSvg.classList.add('block');
+        closeIconSvg.classList.remove('block');
+        closeIconSvg.classList.add('hidden');
+      } else {
+        menuIconSvg.classList.remove('block');
+        menuIconSvg.classList.add('hidden');
+        closeIconSvg.classList.remove('hidden');
+        closeIconSvg.classList.add('block');
+      }
+    });
+
+    // Close mobile menu on clicking any navigation link
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconSvg.classList.remove('hidden');
+        menuIconSvg.classList.add('block');
+        closeIconSvg.classList.remove('block');
+        closeIconSvg.classList.add('hidden');
+      });
+    });
+
+    // Shrink header on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.remove('h-20');
+        navbar.classList.add('h-16', 'shadow-lg');
+      } else {
+        navbar.classList.remove('h-16', 'shadow-lg');
+        navbar.classList.add('h-20');
+      }
+    });
+
+    // Intersection Observer for scroll reveal animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Apply scroll observer to reveal elements
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+
+  </script>
+</body>
+</html>
